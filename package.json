@@ -7,7 +7,7 @@
     "install": "npm install --save",
     "start": "node ./src/main.js",
     "dev": "nodemon ./src/main.ts",
-    "build": "ts -p ."
+    "build": "tsc -p ."
   },
   "keywords": [],
   "author": "",
