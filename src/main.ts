@@ -1,15 +1,15 @@
-import express, { urlencoded } from "express";
+import express from "express";
 import { Application,Request,Response,NextFunction } from "express";
 import http,{ Server } from "http";
 import { ResponseMethod } from "./types/type.public";
-
-
+import Approuter from "./router/index.router";
+import "./app.modules"
 const app :Application = express();
 const server:Server = http.createServer(app)
-const PORT = 5600;
+const PORT = 8000;
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
-
+app.use(Approuter)
 app.use((req:Request , res:Response , next:NextFunction)=>{
     const response :ResponseMethod ={
         StatusCode:404,
