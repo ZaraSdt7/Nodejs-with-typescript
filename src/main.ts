@@ -1,5 +1,5 @@
 import express from "express";
-import { Application,Request,Response,NextFunction } from "express";
+import { Application, Request, Response, NextFunction, Router } from 'express';
 import http,{ Server } from "http";
 import { ResponseMethod } from "./types/type.public";
 import Approuter from "./router/index.router";

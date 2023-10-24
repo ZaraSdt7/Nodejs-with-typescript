@@ -4,7 +4,7 @@ import { Router } from "express";
  export function GET(path?:string | undefined){
  return function(target:any,propertykey:string , descriptor:PropertyDescriptor){
  const route = path?(path[0] == "/" ?path:"/" + path): "/" + propertykey
- DecoratorRouter.get(`${route}` ,target[propertykey])   // target[propertykey] = descriptor.value 
+ DecoratorRouter.get(route ,descriptor.value)   // target[propertykey] = descriptor.value 
  }   
  }
  export function POST(path?:string | undefined){
