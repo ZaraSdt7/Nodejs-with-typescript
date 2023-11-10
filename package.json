@@ -3,8 +3,7 @@
   "version": "1.0.0",
   "main": "main.ts",
   "scripts": {
-    "install": "npm install --save",
-    "start": "node ./src/main.js",
+    "start": "node  ./src/main.js",
     "dev": "nodemon ./src/main.ts",
     "build": "tsc -p ."
   },
