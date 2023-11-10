@@ -1,7 +1,6 @@
 {
   "name": "project-nodejs-and-typescript",
   "version": "1.0.0",
-  "description": "",
   "main": "main.ts",
   "scripts": {
     "install": "npm install --save",
@@ -23,5 +22,6 @@
     "tsc-init": "^2.1.0",
     "tsc-node": "^0.0.3",
     "typescript": "^5.2.2"
-  }
+  },
+  "description": ""
 }
