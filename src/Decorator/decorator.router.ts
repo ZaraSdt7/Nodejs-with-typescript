@@ -8,8 +8,14 @@ export function Get(path?:string |undefined){
 }
 export function Post(path?:string |undefined){
     return function(target:any , propertykey:string , descriptor:PropertyDescriptor){
-        const route = path?(path[0] == "/" ? path:"/" + path) : "/" + propertykey
+        const route = path?(path[0] == "/" ? path:"/" + path) : "/" + propertykey 
         DecoratorRoutes.post(`${route}`, target[propertykey])
+    }
+}
+export function Put(path?:string |undefined){
+    return function(target:any , propertykey:string , descriptor:PropertyDescriptor){
+        const route = path?(path[0] == "/" ? path:"/" + path) : "/" + propertykey
+        DecoratorRoutes.put(`${route}`, target[propertykey])
     }
 }
 export function Patch(path?:string |undefined){
@@ -27,7 +33,7 @@ export function Delete(path?:string |undefined){
 export function Controller(controllerpath?:string | undefined){
     return function(target:any){
         if(controllerpath?.[0] !== "/") controllerpath ="/" + controllerpath
-        const path = controllerpath? controllerpath:"/"
+        const path = controllerpath? controllerpath : "/"
         DecoratorRoutes.use(path,DecoratorRoutes)
     }
 }    
