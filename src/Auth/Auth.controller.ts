@@ -1,17 +1,21 @@
 import { Controller, Post } from "../Decorator/decorator.router";
 import { Request, Response, NextFunction } from "express";
-@Controller('/')
-export class Authcontroller{
-    @Post('auth')
-    register(req:Request,res:Response , next:NextFunction){
-    try {
-        const {username,password,age} = req.body;
-         return res.status(200).send({
-            username,password,age
-        })
-    } catch (error) {
-        console.log(error);
-        next(error)
-    }
+import { UserModel } from "../model/user.model";
+
+@Controller("/auth")
+export class Authcontroller {
+    @Post()
+    register(req: Request, res: Response, next: NextFunction) {
+        try {
+            const { username, password, fullname } = req.body;
+            const user = new UserModel({
+                username, fullname, password
+            });
+            return  res.send(user);
+        } catch (error) {
+           return next(error);
+        }
     }
 }
+
+

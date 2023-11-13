@@ -4,6 +4,7 @@ import { Application,NextFunction,Request,Response } from "express";
 import { ResponseMethods } from "./Types/type.method";
 import APProuter from "./Router/index.routes";
 import "./app.modules"
+import "./modules/mongoDB.connect"
 
 const app :Application = express()
 const server :Server = http.createServer(app)
