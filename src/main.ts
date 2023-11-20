@@ -19,6 +19,18 @@ const Responses : ResponseMethods={
 }
 return res.status(404).json(Responses)
 })
+app.use((error:any , req:Request , res:Response , next:NextFunction)=>{
+const StatusCode :number = +error?.status || 500;
+const message:string = error?.message || "Internal server error";
+const response:ResponseMethods = {
+StatusCode,
+message,
+errors:error?.erros || []
+
+}
+return res.status(StatusCode).json(response)
+})
+
 server.listen(PORT,()=>{
     console.log(`Server runing on:http://localhost:${PORT}`);
 })
