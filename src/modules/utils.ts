@@ -51,3 +51,11 @@ export async function Jwtganaretor(payload:JWTPAYLOADDTO):Promise<void>{
     }
     })
 }
+
+export function ErrorHandler(erros:any[]){
+    let errortext:string[] =[];
+    for (const texterror of erros) {
+       errortext = errortext.concat(texterror.consttraints) 
+    }
+    return errortext
+}

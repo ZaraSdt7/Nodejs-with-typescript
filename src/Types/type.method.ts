@@ -13,3 +13,4 @@ export interface JWTPAYLOADDTO{
     id:ObjectId,
     username:Iuser['username']
 }
+export type FindDoc<T> = T |null |undefined

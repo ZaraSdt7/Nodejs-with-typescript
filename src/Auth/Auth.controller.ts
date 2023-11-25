@@ -5,22 +5,23 @@ import { CompareHashPass, HashStringPassword, Jwtganaretor } from "../modules/ut
 import { Iuser } from "../Types/user.type";
 import createHttpError from "http-errors";
 import { finduser } from "../Types/type.method";
+import { AuthRegisterDTO } from "./Auth.dto";
+import { plainToClass } from "class-transformer";
+import { AuthService } from './Auth.service';
+const authservice:AuthService = new AuthService()
 
 @Controller("/auth")
 export class Authcontroller {
     @Post()
-    register(req: Request, res: Response, next: NextFunction) {
+   async register(req: Request, res: Response, next: NextFunction) {
         try {
-            const { username, password, fullname } = req.body;
-            const user = new UserModel({
-                username, fullname, password
-            });
-            return  res.send(user);
+          const registerdto :AuthRegisterDTO = plainToClass(AuthRegisterDTO,req.body,{excludeExtraneousValues:true})
+          const users:Iuser = await authservice.register(registerdto) 
+          return res.send(users) 
         } catch (error) {
-           return next(error);
+            next(error)
         }
-    }
-
+        }
     @Post()
       async  login(req: Request, res: Response, next: NextFunction) {
         try {
@@ -29,12 +30,13 @@ export class Authcontroller {
             if(!existuser) throw createHttpError.NotFound("Username  or password incorrect")
             const isPasswordValid:boolean = CompareHashPass(password,existuser.password)
            if(!isPasswordValid) throw createHttpError.NotFound("Username or password incorrect")
-            await Jwtganaretor({username, id:existuser._id})
+          await Jwtganaretor({username, id:existuser._id})
             const users = await UserModel.findById(existuser._id)
             return res.json({
                 statusCode:200,
                 data:{
-                    users
+                    users,
+                  
                    
                 }
             })
