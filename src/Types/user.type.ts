@@ -1,6 +1,5 @@
-import { ObjectId } from "mongodb";
-
- export interface Iuser{
+import { Document } from "mongoose"
+ export interface Iuser extends Document{
     fullname:string,
     username:string,
     password:string,
