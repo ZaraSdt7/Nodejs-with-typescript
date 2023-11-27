@@ -1,5 +1,6 @@
 import { Expose } from 'class-transformer';
-import { IsDefined } from 'class-validator';
+import { IsDefined, Matches } from 'class-validator';
+import { ObjectId } from 'mongodb';
 export class CreateBlogDTO{
 @IsDefined()
 @Expose()
@@ -11,4 +12,8 @@ text:string
 @Expose()
 author:string
 
+}
+export class BlogIDDTO{
+@Matches(RegExp(/^(?=[a-f\d]{24}$)(\d+[a-f]|[a-f]+\d)/i))
+id:ObjectId
 }
