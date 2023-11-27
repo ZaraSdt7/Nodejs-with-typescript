@@ -27,7 +27,7 @@ export class BlogService{
     async DeleteByID(blogid:BlogIDDTO):Promise<string>{
      const blogdel:FindDoc<IBlog> = await this.FetchById(blogid)
      const result:any = await BlogModel.deleteOne({_id:blogid.id})
-     if(result.deleteCount >0)   return "Delete ID success"
+     if(result.deletedCount >0)   return "Delete ID success"
      return "Error:Delete faild"
     }
 }
